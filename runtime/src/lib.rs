@@ -554,6 +554,11 @@ impl nfts::Trait for Runtime {
     type Event = Event;
 }
 
+impl nft_registry::Trait for Runtime {
+    type Event = Event;
+    type Randomness = RandomnessCollectiveFlip;
+}
+
 construct_runtime!(
 	pub enum Runtime where
 		Block = Block,
@@ -582,7 +587,8 @@ construct_runtime!(
         RandomnessCollectiveFlip: pallet_randomness_collective_flip::{Module, Call, Storage},
 		Anchor: anchor::{Module, Call, Storage},
 		Fees: fees::{Module, Call, Storage, Event<T>, Config<T>},
-		Nfts: nfts::{Module, Call, Event<T>},
+        Nfts: nfts::{Module, Call, Event<T>},
+        NftRegistry: nft_registry::{Module, Call, Event<T>},
 	}
 );
 
